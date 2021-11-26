@@ -1,5 +1,19 @@
 import './App.css';
 import TodoList from './components/todo-list/todo-list.component';
+import Todo from './types/todo.type';
+
+const todoList: Todo[] = [
+  {
+      id: 1,
+      todo: 'Wake up at 6am',
+      completed: false,
+  },
+  {
+      id: 2,
+      todo: 'Eat a healthy breakfast',
+      completed: false,
+  }
+];
 
 function App() {
   return (
@@ -8,7 +22,11 @@ function App() {
         Todos for today
       </header>
 
-      <TodoList></TodoList>
+      <TodoList todoList={todoList}></TodoList>
+
+      <footer>
+        
+      </footer>
         
     </div>
   );
