@@ -14,7 +14,7 @@ test('renders todo list', () => {
         id: 2,
         todo: 'Eat a healthy breakfast',
         completed: false,
-    }
+    },
   ];
 
   render(<TodoList todoList={todoList} />)

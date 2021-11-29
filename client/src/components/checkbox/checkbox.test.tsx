@@ -13,7 +13,7 @@ test('changes check status on click', () => {
   render(<Checkbox label="test label" />);
 
   const labelElement = screen.getByText('test label');
-  const checkboxElement = labelElement.querySelector('input');
+  const checkboxElement = screen.getByRole('checkbox') as HTMLInputElement;
 
   // Click checkbox
   fireEvent.click(labelElement);
@@ -25,3 +25,20 @@ test('changes check status on click', () => {
 
   expect(labelElement).toBeInTheDocument();
 });
+
+test('the default checked value is false', () => {
+  render(<Checkbox label="test label" />);
+
+  const checkboxElement = screen.getByRole('checkbox') as HTMLInputElement;
+
+  expect(checkboxElement.checked).toBe(false);
+});
+
+test('the initial checked value is set', () => {
+  render(<Checkbox label="test label" checked={true} />);
+
+  const checkboxElement = screen.getByRole('checkbox') as HTMLInputElement;
+
+  expect(checkboxElement.checked).toBe(true);
+});
+
