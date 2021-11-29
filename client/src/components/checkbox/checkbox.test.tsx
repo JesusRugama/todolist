@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
 import Checkbox from './checkbox.component';
 
@@ -42,3 +42,14 @@ test('the initial checked value is set', () => {
   expect(checkboxElement.checked).toBe(true);
 });
 
+test('onChange is called', () => {
+  let called:boolean = false;
+
+  const onChange = (
+    event: ChangeEvent<HTMLInputElement>
+  ) => {
+    called = true;
+  }
+
+  render(<Checkbox label="test label" onChange={onChange} />);
+})
