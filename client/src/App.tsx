@@ -11,7 +11,7 @@ const todoList: Todo[] = [
   {
       id: 2,
       todo: 'Eat a healthy breakfast',
-      completed: false,
+      completed: true,
   },
   {
     id: 3,
