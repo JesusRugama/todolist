@@ -1,13 +1,18 @@
 import TodoList from "../components/todo-list/todo-list.component";
 import { connect } from "react-redux";
-import { fetchCollectionsStart } from "../store/todo/todo.actions";
+import { fetchTodoList } from "../store/todo/todo.actions";
 import { useEffect } from "react";
-import { TodoState } from "../store/todo/todo.types";
+import { Todo, TodoState } from "../store/todo/todo.types";
 
-const TodoListPage = ({ todoList, fetchCollectionsStart }: any) => {
+interface Props {
+  todoList: Todo[];
+  fetchTodoList: typeof fetchTodoList;
+}
+
+const TodoListPage = ({ todoList, fetchTodoList }: Props) => {
   useEffect(() => {
-    fetchCollectionsStart();
-  }, []);
+    fetchTodoList();
+  }, [fetchTodoList]);
 
   return (
     <>
@@ -25,7 +30,7 @@ const mapStateToProps = ({ todos }: { todos: TodoState }) => {
 };
 
 const mapDispatchToProps = {
-  fetchCollectionsStart,
+  fetchTodoList,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoListPage);
