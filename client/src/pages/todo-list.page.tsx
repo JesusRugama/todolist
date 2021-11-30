@@ -1,33 +1,31 @@
-import TodoList from '../components/todo-list/todo-list.component';
-import { todoList } from "../data/todos.sample";
-import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
+import TodoList from "../components/todo-list/todo-list.component";
+import { connect } from "react-redux";
+import { fetchCollectionsStart } from "../store/todo/todo.actions";
+import { useEffect } from "react";
+import { TodoState } from "../store/todo/todo.types";
 
-const TodoListPage = () => (
-  <>
-    <header className="App-header">
-      Todos for today
-    </header>
+const TodoListPage = ({ todoList, fetchCollectionsStart }: any) => {
+  useEffect(() => {
+    fetchCollectionsStart();
+  }, []);
 
-    <TodoList todoList={todoList}></TodoList>
+  return (
+    <>
+      <header className="App-header">Todos for today</header>
 
-    <footer>
-    
-    </footer>
-  </>
-)
+      <TodoList todoList={todoList}></TodoList>
 
-// const mapStateToProps = createStructuredSelector({
-  // currentUser: selectCurrentUser
-// });
+      <footer></footer>
+    </>
+  );
+};
 
-// const mapDispatchToProps = dispatch => ({
-  // checkUserSession: () => dispatch(checkUserSession())
-// });
+const mapStateToProps = ({ todos }: { todos: TodoState }) => {
+  return { todoList: todos.todoList };
+};
 
-// export default connect(
-  // mapStateToProps,
-  // mapDispatchToProps
-// )(TodoListPage);
+const mapDispatchToProps = {
+  fetchCollectionsStart,
+};
 
-export default TodoListPage;
+export default connect(mapStateToProps, mapDispatchToProps)(TodoListPage);

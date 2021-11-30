@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, within } from '@testing-library/react';
 import TodoList from './todo-list.component';
-import Todo from '../../types/todo.type';
+import { Todo } from "../../store/todo/todo.types";
 
 test('renders todo list', () => {
   const todoList: Todo[] = [

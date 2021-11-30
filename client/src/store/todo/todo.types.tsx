@@ -1,9 +1,9 @@
-const todoActions = {
-    ADD_TODO: 'ADD_TODO'
+export type Todo = {
+  id: number;
+  todo: string;
+  completed: boolean;
 };
 
-export const {
-    ADD_TODO
-} = todoActions;
-
-export default todoActions;
+export type TodoState = {
+  todoList: Todo[];
+};

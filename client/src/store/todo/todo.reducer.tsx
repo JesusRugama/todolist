@@ -1,28 +1,24 @@
-import { ADD_TODO } from "./todo.types";
-import Todo from "../../types/todo.type";
+import { todoActionTypes } from "./todo.actions";
+import { TodoState } from "./todo.types";
 import { AnyAction } from "redux";
+import { todoList } from "../../data/todos.sample";
 
-interface todoState {
-  todoList: Todo[];
-}
-
-const INITIAL_STATE: todoState = {
-  todoList: []
+const INITIAL_STATE: TodoState = {
+  todoList: todoList,
 };
 
-const todoReducer = (
-  state: todoState = INITIAL_STATE, 
-  action: AnyAction
-) => {
+const todoReducer = (state: TodoState = INITIAL_STATE, action: AnyAction) => {
   switch (action.type) {
-    case ADD_TODO: 
+    case todoActionTypes.FETCH_TODO_LIST:
       return {
         ...state,
-        todoList: [
-          ...state.todoList,
-          action.payload
-        ]
-      }
+        todoList: [...state.todoList],
+      };
+    case todoActionTypes.ADD_TODO:
+      return {
+        ...state,
+        todoList: [...state.todoList, action.payload],
+      };
     default:
       return state;
   }
