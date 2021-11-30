@@ -9,7 +9,7 @@ const INITIAL_STATE: TodoState = {
 
 const todoReducer = (state: TodoState = INITIAL_STATE, action: AnyAction) => {
   switch (action.type) {
-    case todoActionTypes.FETCH_TODO_LIST:
+    case todoActionTypes.FETCH_TODO_LIST_START:
       return {
         ...state,
         todoList: [...state.todoList],
